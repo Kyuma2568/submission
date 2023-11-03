@@ -9,17 +9,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class TC06_CheckOutPage {
+public class TC08_CheckOutPage {
     WebElement Elem = null;
     Select Dropdown = null;
     private WebDriver driver;
-    public TC06_CheckOutPage(WebDriver driver) {
+    public TC08_CheckOutPage(WebDriver driver) {
         this.driver = driver;
     }
-
     private final By proceedToCheckoutSelector = By.cssSelector("li[class='method-checkout-cart-methods-onepage-bottom'] button[title='Proceed to Checkout'] span span");
     private final By newBillingAddressBox = By.id("billing-address-select");
-    private final By newShippingAddressBox = By.id("shipping-address-select");
+    private final By newShippingAddressBox = By.name("shipping_address_id");
     private final By BfisrtNameBox = By.id("billing:firstname");
     private final By BmiddleNameBox = By.id("billing:middlename");
     private final By BlastNameBox = By.id("billing:lastname");
@@ -47,13 +46,12 @@ public class TC06_CheckOutPage {
     private final By ShipToDifAddressSelector = By.cssSelector("label[for='billing:use_for_shipping_no']");
     private final By ContinueBilingSelector = By.cssSelector("button[onclick='billing.save()']");
     private final By ContinueShippingSelector = By.cssSelector("button[onclick='shipping.save()'] span span");
-    private final By ContinueShippingMethodSelector = By.xpath("//button[@onclick='shippingMethod.save()']");
+    private final By ContinueShippingMethodSelector = By.cssSelector("button[onclick='shippingMethod.save()'] span span");
     private final By ChkMoSelector = By.xpath("//label[@for='p_method_checkmo']");
     private final By ContinuePaymentSelector = By.cssSelector("button[onclick='payment.save()'] span span");
     private final By PlaceOrderSelector = By.xpath("//button[@title='Place Order']");
     private final By OrderRecievedMessage = By.cssSelector(".sub-title");
     private final By orderNumberMessage = By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > p:nth-child(3)");
-
 
     public void clickProceedToCheckout() {
         driver.findElement(proceedToCheckoutSelector).click();
@@ -115,18 +113,18 @@ public class TC06_CheckOutPage {
         driver.findElement(ShipToDifAddressSelector).click();
         driver.findElement(ContinueBilingSelector).click();
     }
-        public void enterShippingInformation(String newAddress, String fisrtName, String middleName, String lastName,
+    public void enterShippingInformation(String newAddress, String fisrtName, String middleName, String lastName,
                                          String company, String address, String streetAddress2, String city,
                                          String state, String zip, String country, String telephone, String fax) {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            try{
-                wait.until(ExpectedConditions.visibilityOfElementLocated(newShippingAddressBox));
-                Dropdown = new Select(driver.findElement(newShippingAddressBox));
-                int DropdownSize = Dropdown.getOptions().size();
-                Dropdown.selectByIndex(DropdownSize -1);
-            } catch (Exception e) {
-                System.out.println("No dropdown element present");
-            }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try{
+            wait.until(ExpectedConditions.visibilityOfElementLocated(newShippingAddressBox));
+            Dropdown = new Select(driver.findElement(newShippingAddressBox));
+            int DropdownSize = Dropdown.getOptions().size();
+            Dropdown.selectByIndex(DropdownSize -1);
+        } catch (Exception e) {
+            System.out.println("No dropdown element present");
+        }
 
         Elem = driver.findElement(SfisrtNameBox);
         Elem.clear();
@@ -202,5 +200,4 @@ public class TC06_CheckOutPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(orderNumberMessage)).getText();
     }
-
 }

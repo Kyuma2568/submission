@@ -40,12 +40,12 @@ public class TC06_Test {
                 "LVV", "THUDUC", "New York", "123456",
                 "United States", "1234567890", "654321");
 
-//        checkoutPage.enterShippingInformation("New Address", "aaa",
-//                "aaa", "aaa", "FPT", "24",
-//                "LVV", "THUDUC", "New York", "123456",
-//                "United States", "1234567890", "654321");
 
-        checkoutPage.click();
+        checkoutPage.enterShippingInformation("New Address", "aaa",
+                "aaa", "aaa", "FPT", "24",
+                "LVV", "THUDUC", "New York", "123456",
+                "United States", "1234567890", "654321");
+
 
         checkoutPage.selectShippingMethod();
 
