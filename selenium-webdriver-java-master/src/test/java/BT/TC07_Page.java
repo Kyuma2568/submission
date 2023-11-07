@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class TC07_Page {
-
-    WebElement Ele = null;
     private WebDriver driver;
 
     public TC07_Page(WebDriver driver) {

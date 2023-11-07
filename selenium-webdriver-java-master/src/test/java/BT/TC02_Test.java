@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class TC02_Test {
     @Test
-    public void main() {
+    public void Main() {
 
         // Create a WebDriver instance
         WebDriver driver = driverFactory.getChromeDriver();

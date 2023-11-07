@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class TC04_Test {
     @Test
-    public void main() {
+    public void Main() {
         WebDriver driver = driverFactory.getChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("http://live.techpanda.org/");
@@ -16,6 +16,7 @@ public class TC04_Test {
         TC04_Page page = new TC04_Page(driver);
 
         page.clickOnMobileMenu();
+        page.SortBy("Price");
         page.addToCompareSonyXperia();
         page.addToCompareIphone();
         page.clickOnCompareButton();

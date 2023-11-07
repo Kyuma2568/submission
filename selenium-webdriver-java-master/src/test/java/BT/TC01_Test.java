@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TC01_Test {
     @Test
-    public void test() {
+    public void Main() {
 
         // Create a WebDriver instance
         WebDriver driver = driverFactory.getChromeDriver();

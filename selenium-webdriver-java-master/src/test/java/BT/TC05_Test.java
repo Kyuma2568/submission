@@ -10,7 +10,7 @@ import java.time.Duration;
 
     public class TC05_Test {
     @Test
-        public void main() {
+        public void Main() {
             WebDriver driver = driverFactory.getChromeDriver();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             driver.get("http://live.techpanda.org/");
@@ -19,7 +19,7 @@ import java.time.Duration;
 
             page.clickOnMyAccountLink();
             page.clickCreateAnAccountLink();
-            page.fillNewUserInfo("aaa", "aaa", "aaa", "aaaaa@email.com", "A123456", "A123456");
+            page.fillNewUserInfo("aaa", "aaa", "aaa", "aaaaaaaaaa@eemaail.com", "A123456", "A123456");
             page.clickRegister();
 
             String expectedMessage = "Thank you for registering with Main Website Store.";

@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class TC05_Page {
-    WebElement Elem = null;
-    WebDriverWait wait = null;
+    WebElement Elem;
+    WebDriverWait wait;
     private WebDriver driver;
 
     // Declare element selector value here
-    private By myAccountLinkSelector = By.linkText("MY ACCOUNT");
-    private By createAnAccountLinkSelector = By.linkText("CREATE AN ACCOUNT");
+    private By myAccountLink = By.linkText("MY ACCOUNT");
+    private By createAnAccountLink = By.linkText("CREATE AN ACCOUNT");
 
     private By fisrtNameBox = By.cssSelector("#firstname");
     private By middleNameBox = By.cssSelector("#middlename");
@@ -22,11 +22,11 @@ public class TC05_Page {
     private By emailAddressBox = By.cssSelector("#email_address");
     private By passwordBox = By.cssSelector("#password");
     private By confirmPasswordBox = By.cssSelector("#confirmation");
-    private By registerButtonSelector = By.cssSelector("button[title='Register']");
-    private By registrationMessageSelector = By.cssSelector("li[class='success-msg'] ul li span");
-    private By tvMenuSelector = By.linkText("TV");
-    private By addToWishlistLgLcdSelector = By.xpath("//li[1]//div[1]//div[3]//ul[1]//li[1]//a[1]");
-    private By shareWishlistButtonSelector = By.cssSelector("button[title='Share Wishlist']");
+    private By registerButton = By.cssSelector("button[title='Register']");
+    private By registrationMessage = By.cssSelector("li[class='success-msg'] ul li span");
+    private By tvMenu = By.linkText("TV");
+    private By addToWishlistLgLcd = By.xpath("//li[1]//div[1]//div[3]//ul[1]//li[1]//a[1]");
+    private By shareWishlistButton = By.cssSelector("button[title='Share Wishlist']");
     private By ShareEmailAddressBox = By.cssSelector("#email_address");
     private By ShareMsgBox = By.cssSelector("#message");
 
@@ -39,11 +39,11 @@ public class TC05_Page {
 
     // Methods to interact with the elements on the page
     public void clickOnMyAccountLink() {
-        driver.findElement(myAccountLinkSelector).click();
+        driver.findElement(myAccountLink).click();
     }
 
     public void clickCreateAnAccountLink() {
-        driver.findElement(createAnAccountLinkSelector).click();
+        driver.findElement(createAnAccountLink).click();
     }
 
     public void fillNewUserInfo(String fisrtName, String middleName, String lastName, String emailAddress, String password, String confirmPassword) {
@@ -86,23 +86,23 @@ public class TC05_Page {
     }
 
     public void clickRegister() {
-        driver.findElement(registerButtonSelector).click();
+        driver.findElement(registerButton).click();
     }
 
     public String getRegistrationMessage() {
-        return driver.findElement(registrationMessageSelector).getText();
+        return driver.findElement(registrationMessage).getText();
     }
 
     public void goToTvMenu() {
-        driver.findElement(tvMenuSelector).click();
+        driver.findElement(tvMenu).click();
     }
 
     public void addToWishlistLgLcd() {
-        driver.findElement(addToWishlistLgLcdSelector).click();
+        driver.findElement(addToWishlistLgLcd).click();
     }
 
     public void clickShareWishlist() {
-        driver.findElement(shareWishlistButtonSelector).click();
+        driver.findElement(shareWishlistButton).click();
     }
 
     public void enterEmailAndMessage(String email, String ShareMsg) {

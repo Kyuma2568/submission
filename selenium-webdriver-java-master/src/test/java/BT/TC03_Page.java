@@ -12,13 +12,13 @@ public class TC03_Page {
     private WebDriver driver;
 
     // Declare element selector value here
-    private By mobileMenuSelector = By.linkText("MOBILE");
-    private By addToCartSonyXperiaSelector = By.xpath("//h2[a='Sony Xperia']/following-sibling::div//button[@title='Add to Cart']");
-    private By qtySelector = By.cssSelector("input[title='Qty']");
-    private By updateButtonSelector = By.cssSelector("button[title='Update']");
-    private By errorMessageSelector = By.cssSelector(".item-msg.error");
-    private By emptyCartLinkSelector = By.linkText("Remove Item");
-    private By emptyCartMessageSelector = By.cssSelector("div[class='page-title'] h1");
+    private By mobileMenu = By.linkText("MOBILE");
+    private By addToCartSonyXperia = By.xpath("//h2[a='Sony Xperia']/following-sibling::div//button[@title='Add to Cart']");
+    private By qty = By.cssSelector("input[title='Qty']");
+    private By updateButton = By.cssSelector("button[title='Update']");
+    private By errorMessage = By.cssSelector("li[class='error-msg'] ul li span");
+    private By emptyCartLink = By.linkText("Remove Item");
+    private By emptyCartMessage = By.cssSelector("div[class='page-title'] h1");
 
     // Constructor with required parameter as a WebDriver instance
     public TC03_Page(WebDriver driver) {
@@ -27,36 +27,36 @@ public class TC03_Page {
 
     // Methods to interact with the elements on the page
     public void clickOnMobileMenu() {
-        driver.findElement(mobileMenuSelector).click();
+        driver.findElement(mobileMenu).click();
     }
 
     public void addToCartSonyXperia() {
-        driver.findElement(addToCartSonyXperiaSelector).click();
+        driver.findElement(addToCartSonyXperia).click();
     }
 
     public void changeQty(String qty) {
-        WebElement qtyElem = driver.findElement(qtySelector);
+        WebElement qtyElem = driver.findElement(this.qty);
         qtyElem.clear();
         // Wait for the input to be cleared
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(qtySelector, "value", ""));
+        wait.until(ExpectedConditions.attributeToBe(this.qty, "value", ""));
         // Then send the new quantity
         qtyElem.sendKeys(qty);
     }
 
     public void clickUpdateButton() {
-        driver.findElement(updateButtonSelector).click();
+        driver.findElement(updateButton).click();
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessageSelector).getText();
+        return driver.findElement(errorMessage).getText();
     }
 
     public void clickEmptyCartLink() {
-        driver.findElement(emptyCartLinkSelector).click();
+        driver.findElement(emptyCartLink).click();
     }
 
     public String getEmptyCartMessage() {
-        return driver.findElement(emptyCartMessageSelector).getText();
+        return driver.findElement(emptyCartMessage).getText();
     }
 }

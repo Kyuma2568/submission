@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class TC06_Test {
     @Test
-    public void main() {
+    public void Main() {
         WebDriver driver = driverFactory.getChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("http://live.techpanda.org/");

@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.Select;
 public class TC06_CartPage {
     private WebDriver driver;
 
-    private By myWishlistLinkSelector = By.partialLinkText("MY WISHLIST");
-    private By myAddToCartSelector = By.cssSelector("button[title='Add to Cart']");
+    private By myWishlistLink = By.partialLinkText("MY WISHLIST");
+    private By myAddToCart = By.cssSelector("button[title='Add to Cart']");
     private By countryBox = By.id("country");
     private By stateBox = By.id("region_id");
     private By zipBox = By.id("postcode");
-    private By estimateSelector = By.xpath("//span[contains(text(),'Estimate')]");
-    private By shippingCostSelector = By.cssSelector("label[for='s_method_flatrate_flatrate'] span[class='price']");
+    private By estimate = By.xpath("//span[contains(text(),'Estimate')]");
+    private By shippingCost = By.cssSelector("label[for='s_method_flatrate_flatrate'] span[class='price']");
     private By totalCostSelector = By.xpath("//span[contains(text(),'Update Total')]");
     private By totalCost = By.cssSelector("strong span[class='price']");
 
@@ -23,11 +23,11 @@ public class TC06_CartPage {
     }
 
     public void clickOnMyWishlistLink() {
-        driver.findElement(myWishlistLinkSelector).click();
+        driver.findElement(myWishlistLink).click();
     }
 
     public void clickOnMyAddToCartLink() {
-        driver.findElement(myAddToCartSelector).click();
+        driver.findElement(myAddToCart).click();
     }
 
     public void enterShippingInformation(String country, String state, String zip) {
@@ -43,15 +43,15 @@ public class TC06_CartPage {
     }
 
     public void clickOnEstimateLink() {
-        driver.findElement(estimateSelector).click();
+        driver.findElement(estimate).click();
     }
 
     public void selectShippingCost() {
-        driver.findElement(shippingCostSelector).click();
+        driver.findElement(shippingCost).click();
     }
 
     public String getShippingCost() {
-        return driver.findElement(shippingCostSelector).getText();
+        return driver.findElement(shippingCost).getText();
     }
 
     public void updateTotalCost() {

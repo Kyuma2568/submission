@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 public class TC03_Test {
     @Test
-    public void main() {
+    public void Main() {
         WebDriver driver = driverFactory.getChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get("http://live.techpanda.org/");
@@ -19,7 +19,7 @@ public class TC03_Test {
         page.changeQty("1000");
         page.clickUpdateButton();
 
-        String expectedErrorMessage = "The requested quantity for \"Sony Xperia\" is not available.";
+        String expectedErrorMessage = "Some of the products cannot be ordered in requested quantity.";
         String actualErrorMessage = page.getErrorMessage();
         assert actualErrorMessage.equals(expectedErrorMessage) : "Error message does not match!";
 

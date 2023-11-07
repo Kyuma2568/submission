@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class TC08_Page {
-
-    WebElement Ele = null;
     private WebDriver driver;
 
     public TC08_Page(WebDriver driver) {
