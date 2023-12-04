@@ -1,2 +1,2 @@
 # software-testing
-This repository is dedicated for my experience with software testing using IntelliJ
+This repository is dedicated for my experience with software testing using IntelliJ, Postman, Jira, JUnit, Maven,...
