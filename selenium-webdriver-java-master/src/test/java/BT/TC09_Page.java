@@ -2,46 +2,48 @@ package BT;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class TC09_Page {
     private WebDriver driver;
+
+
     public TC09_Page(WebDriver driver) {
         this.driver = driver;
     }
-    private final By mobileMenu = By.linkText("MOBILE");
-    private final By addToCartIphone = By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(2) > div:nth-child(4) > button:nth-child(1)");
-    private final By couponCodeInput = By.cssSelector("input[name='coupon_code']");
-    private final By applyCouponButton = By.cssSelector("button[value='Apply']");
-    private final By totalPrice = By.cssSelector("strong span[class='price']");
+
+    private final By goToMobile = By.linkText("MOBILE");
+    private final By SelectIphone = By.xpath("//a[contains(text(),'IPhone')]/following::button[@title='Add to Cart'][1]");
+    private final By grandtotal = By.xpath("//*[@id='shopping-cart-totals-table']/tfoot");
+    private final By Inputcoupon = By.xpath("//*[@id='coupon_code']");
+    private final By ApplyDiscount = By.xpath("//*[@id='discount-coupon-form']/div/div/div/div/button");
 
 
-
-    // Step 2: Navigate to the 'Mobile' section
-    public void clickOnMobileMenu() {
-        driver.findElement(mobileMenu).click();
+    public void Input(String coupon) {
+        driver.findElement(Inputcoupon).clear();;
+        driver.findElement(Inputcoupon).sendKeys(coupon);
+        driver.findElement(ApplyDiscount).click();
+    }
+    public void Mobile() {
+        driver.findElement(goToMobile).click();
     }
 
-    // Step 3: Add 'IPHONE' to cart
-    public void addToCartIphone() {
-        driver.findElement(addToCartIphone).click();
+    public void Select() {
+        driver.findElement(SelectIphone).click();
+    }
+    public String getTotal() {
+        WebElement grandTotal = driver.findElement(grandtotal);
+        String origin = grandTotal.getText();
+        return origin;
     }
 
-    // Step 4: Enter the coupon code
-    public void enterCouponCode(String code) {
-        driver.findElement(couponCodeInput).sendKeys(code);
+    public String getTotal2() {
+        WebElement newgrandTotal = driver.findElement(grandtotal);
+        String discount = newgrandTotal.getText();
+        return discount;
     }
-
-    public void clickApplyCouponButton() {
-        driver.findElement(applyCouponButton).click();
-    }
-
-    // Step 5: Verify the discount
-    // Convert price string to a number and calculate expected discount
-    public double Price() {
-        return Double.parseDouble(driver.findElement(totalPrice).getText().replace("$", ""));
-    }
-
-    public double DiscountedPrice() {
-        return Price() * 0.95;
+    public void compare(String totalBeforeDiscount, String totalAfterDiscount) {
+        Assert.assertNotEquals(totalBeforeDiscount, totalAfterDiscount, "grand total incorrect!!!");
     }
 }

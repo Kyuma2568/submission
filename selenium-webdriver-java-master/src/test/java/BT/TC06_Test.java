@@ -10,14 +10,14 @@ public class TC06_Test {
     @Test
     public void Main() {
         WebDriver driver = driverFactory.getChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
         driver.get("http://live.techpanda.org/");
         TC06_LoginPage loginPage = new TC06_LoginPage(driver);
         TC06_CartPage cartPage = new TC06_CartPage(driver);
         TC06_CheckOutPage checkoutPage = new TC06_CheckOutPage(driver);
 
         loginPage.clickOnMyAccountLink();
-        loginPage.login("aaaaa@email.com", "A123456");
+        loginPage.login("bbbb@eeemaail.com", "A123456");
 
         cartPage.clickOnMyWishlistLink();
         cartPage.clickOnMyAddToCartLink();
@@ -41,7 +41,7 @@ public class TC06_Test {
                 "United States", "1234567890", "654321");
 
 
-        checkoutPage.enterShippingInformation("New Address", "aaa",
+        checkoutPage.enterShippingInformation("aaa",
                 "aaa", "aaa", "FPT", "24",
                 "LVV", "THUDUC", "New York", "123456",
                 "United States", "1234567890", "654321");

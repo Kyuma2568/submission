@@ -1,6 +1,7 @@
 package BT;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class TC06_CheckOutPage {
     WebElement Elem;
@@ -62,8 +64,16 @@ public class TC06_CheckOutPage {
     public void enterBillingInformation(String newAddress, String fisrtName, String middleName, String lastName,
                                         String company, String address, String streetAddress2, String city,
                                         String state, String zip, String country, String telephone, String fax) {
-        Dropdown = new Select(driver.findElement(newBillingAddressBox));
-        Dropdown.selectByVisibleText(newAddress);
+        try {
+            WebElement element = driver.findElement(newBillingAddressBox);
+            if (element.isDisplayed()) {
+                Dropdown = new Select(element);
+                Dropdown.selectByVisibleText(newAddress);
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found. Skipping this step.");
+        }
+
 
         Elem = driver.findElement(BfisrtNameBox);
         Elem.clear();
@@ -115,15 +125,19 @@ public class TC06_CheckOutPage {
         driver.findElement(ShipToDifAddress).click();
         driver.findElement(ContinueBiling).click();
     }
-        public void enterShippingInformation(String newAddress, String fisrtName, String middleName, String lastName,
+        public void enterShippingInformation(String fisrtName, String middleName, String lastName,
                                          String company, String address, String streetAddress2, String city,
                                          String state, String zip, String country, String telephone, String fax) {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            try{
-                wait.until(ExpectedConditions.visibilityOfElementLocated(newShippingAddressBox));
-                Dropdown = new Select(driver.findElement(newShippingAddressBox));
-                int DropdownSize = Dropdown.getOptions().size();
-                Dropdown.selectByIndex(DropdownSize -1);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+            try {
+                if (driver.findElements(newShippingAddressBox).size() > 0) {
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(newShippingAddressBox));
+                    Dropdown = new Select(driver.findElement(newShippingAddressBox));
+                    int DropdownSize = Dropdown.getOptions().size();
+                    Dropdown.selectByIndex(DropdownSize - 1);
+                } else {
+                    System.out.println("Element does not exist, skipping this step");
+                }
             } catch (Exception e) {
                 System.out.println("No dropdown element present");
             }

@@ -5,23 +5,34 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class TC09_Test {
     @Test
-    public void Main() {
+    public void main() throws InterruptedException {
         WebDriver driver = driverFactory.getChromeDriver();
+        TC09_Page check = new TC09_Page(driver);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+        //Step 1: get Link
         driver.get("http://live.techpanda.org/");
+        // Step 2: Click on MOBILE menu and add IPHONE to cart
+        check.Mobile();
+        check.Select();
+        // Step 3:  Enter Coupon Code
+        check.getTotal();
+        System.out.println("origin: " + check.getTotal());
+        check.Input("GURU50");
+        Thread.sleep(2000);
 
-        TC09_Page page = new TC09_Page(driver);
-
-        page.clickOnMobileMenu();
-        page.addToCartIphone();
-        page.enterCouponCode("GURU50");
-        page.clickApplyCouponButton();
-
-
-        Assert.assertEquals(page.DiscountedPrice(), page.Price() * 0.95);
-        System.out.println("Price is discounted by 5%");
-
+        // Step 4:  Verify the discount generated
+        check.getTotal2();
+        System.out.println("discount: " + check.getTotal2());
+        Thread.sleep(2000);
+        String totalBeforeDiscount = check.getTotal();
+        String totalAfterDiscount = check.getTotal2();
+        check.compare(totalBeforeDiscount, totalAfterDiscount);
+        Thread.sleep(2000);
         driver.quit();
     }
 }

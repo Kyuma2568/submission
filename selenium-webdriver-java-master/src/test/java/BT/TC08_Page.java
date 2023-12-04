@@ -57,7 +57,8 @@ public class TC08_Page {
     }
 
     public void clickUpdate() {
-        driver.findElement(Update).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(Update)).click();
     }
 
     public String getGrandTotal() {

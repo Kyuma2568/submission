@@ -19,7 +19,7 @@ import java.time.Duration;
 
             page.clickOnMyAccountLink();
             page.clickCreateAnAccountLink();
-            page.fillNewUserInfo("aaa", "aaa", "aaa", "aaaaaaaaaa@eemaail.com", "A123456", "A123456");
+            page.fillNewUserInfo("aaa", "aaa", "aaa", "bbbb@eeemaail.com", "A123456", "A123456");
             page.clickRegister();
 
             String expectedMessage = "Thank you for registering with Main Website Store.";
